@@ -38,7 +38,7 @@ tags=hydrology,watershed,stormwater,engineering,analysis,python
 
 homepage=https://github.com/Jwoody124/hydro-suite
 category=Analysis
-icon=icon.png
+# icon=icon.png  # TODO: Add 24x24 PNG icon
 # experimental flag
 experimental=False
 
@@ -49,9 +49,6 @@ deprecated=False
 # (or upgraded) can be specified.
 # Check the documentation for more information.
 # plugin_dependencies=
-
-Category of the plugin: Raster, Vector, Database or Web
-category=Analysis
 
 # If the plugin can run on QGIS Server.
 server=False

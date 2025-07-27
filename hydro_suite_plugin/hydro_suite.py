@@ -115,8 +115,11 @@ class HydroSuite:
         :rtype: QAction
         """
 
-        icon = QIcon(icon_path)
-        action = QAction(icon, text, parent)
+        if icon_path:
+            icon = QIcon(icon_path)
+            action = QAction(icon, text, parent)
+        else:
+            action = QAction(text, parent)
         action.triggered.connect(callback)
         action.setEnabled(enabled_flag)
 
@@ -142,10 +145,8 @@ class HydroSuite:
     def initGui(self):
         """Create the menu entries and toolbar icons inside the QGIS GUI."""
 
-        icon_path = os.path.join(self.plugin_dir, 'icon.png')
-        # Use default icon if custom icon doesn't exist
-        if not os.path.exists(icon_path):
-            icon_path = ':/images/themes/default/console/iconRunConsole.svg'
+        # Use default QGIS icon since we don't have a custom icon yet
+        icon_path = None  # Will use default QAction icon
         
         self.add_action(
             icon_path,

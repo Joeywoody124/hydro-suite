@@ -1,0 +1,18 @@
+TODO: Add icon.png file
+
+Requirements:
+- 24x24 pixel PNG format
+- Represents hydrology/water theme
+- Simple, clear design
+- Name: icon.png
+
+Suggestions:
+- Water droplet
+- Watershed diagram
+- "HS" letters
+- Blue/water themed colors
+
+Free icon sources:
+- https://www.flaticon.com (search "water")
+- https://icons8.com (search "hydrology")
+- https://www.iconfinder.com (search "watershed")

@@ -1,8 +1,12 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
 *$py.class
+
+# C extensions
 *.so
+
+# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -16,29 +20,57 @@ parts/
 sdist/
 var/
 wheels/
-pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
 
-# PyQt
-*.pyc
-*.pyo
+# PyInstaller
+*.manifest
+*.spec
 
-# QGIS
-*.qgs~
-*.qgz~
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
 
 # IDEs
-.vscode/
+.spyderproject
+.spyproject
+.ropeproject
 .idea/
+.vscode/
 *.swp
 *.swo
 *~
 
-# OS
+# QGIS specific
+*.qgs~
+*.qgz~
+.qgis/
+*.qgs.bak
+
+# OS specific
 .DS_Store
 .DS_Store?
 ._*
@@ -51,28 +83,38 @@ Thumbs.db
 *.tmp
 *.temp
 *.log
+*.bak
+.~*
 
-# Output files (for testing)
-test_outputs/
+# Output directories (customize as needed)
+output/
+results/
+temp/
+
+# Large data files
 *.shp
-*.shx
 *.dbf
+*.shx
 *.prj
 *.cpg
+*.sbn
+*.sbx
+*.xml
 *.qpj
+# Note: You may want to track some shapefiles in examples/
+# In that case, use !examples/**/*.shp etc.
 
-# Backup files
-*.bak
-*.backup
+# Excel/CSV temporary files
+~$*.xlsx
+~$*.xls
+*.csv#
 
-# Documentation builds
+# Documentation build files
 docs/_build/
+docs/_static/
+docs/_templates/
+*.pdf
 
-# Test data
-test_data/
-sample_data/
-
-# Personal notes
-notes.txt
-todo.txt
-scratch.py
+# Local configuration
+local_settings.py
+config.local.ini

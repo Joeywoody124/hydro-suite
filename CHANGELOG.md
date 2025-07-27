@@ -8,16 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- TC Calculator implementation (in progress)
+- **Channel Designer Tool** - Complete integration of trapezoidal channel cross-section designer
+- TC Calculator implementation with multi-method support
 - Git repository initialization
 - Comprehensive project documentation
 
 ### Changed
 - Improved error handling in existing tools
 - Enhanced validation feedback
+- Updated main framework to include Channel Designer
 
 ### Fixed
 - Minor UI layout issues
+- Import path issues in launcher scripts
 
 ## [1.0.0] - 2025-01-XX
 
@@ -44,6 +47,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Unrecognized soil group handling (default C=0.95)
   - Complete workflow with validation and outputs
   - QGIS processing integration
+
+- **Time of Concentration Calculator**
+  - Multi-method implementation (Kirpich, FAA, SCS/NRCS, Kerby)
+  - Tabbed interface for different calculation methods
+  - Parameter customization and method comparison
+  - Real-time calculation and validation
+  - Professional results output and reporting
+
+- **Channel Designer Tool**
+  - Interactive trapezoidal channel cross-section designer
+  - Real-time geometric visualization
+  - Hydraulic property calculations (area, wetted perimeter, hydraulic radius)
+  - SWMM-compatible cross-section output format
+  - Batch processing capability with CSV import/export
+  - Channel geometry validation and error handling
 
 - **Shared UI Components**
   - `LayerFieldSelector`: Unified layer and field selection widget
@@ -105,15 +123,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Development Status
 
 ### Current Focus
-- Completing TC Calculator implementation
-- Setting up version control system
-- Enhancing test coverage
-- Preparing plugin package
+- All core tools implementation completed (CN Calculator, Rational C, TC Calculator, Channel Designer)
+- Version control system established with git
+- Framework documentation and API reference complete
+- Ready for plugin packaging and deployment
 
 ### Next Milestones
-- **v1.1**: Complete TC Calculator, add Channel Designer
-- **v1.2**: Plugin packaging, additional tools
-- **v2.0**: Advanced features, workflow automation
+- **v1.1**: Plugin packaging, QGIS Plugin Repository submission
+- **v1.2**: Additional tools integration (Markdown converter, etc.)
+- **v2.0**: Advanced features, workflow automation, batch processing
 
 ## Contributing
 

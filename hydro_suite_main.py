@@ -72,11 +72,11 @@ class HydroSuiteController:
             },
             "channel_designer": {
                 "name": "Channel Designer",
-                "module": "Channel_Designer.channel_designer_wrapper",
+                "module": "channel_designer_tool",
                 "class": "ChannelDesignerTool",
                 "icon": "channel_icon.png",
                 "category": "Hydraulic Design",
-                "description": "Design trapezoidal channels for hydraulic modeling"
+                "description": "Design trapezoidal channel cross-sections with SWMM integration"
             }
         }
         
@@ -156,6 +156,9 @@ class HydroSuiteController:
         elif tool_id == "tc_calculator":
             from tc_calculator_tool import TCCalculatorTool
             return TCCalculatorTool()
+        elif tool_id == "channel_designer":
+            from channel_designer_tool import ChannelDesignerTool
+            return ChannelDesignerTool()
         
         # For other tools, return mock until implemented
         class MockTool(HydroToolInterface):

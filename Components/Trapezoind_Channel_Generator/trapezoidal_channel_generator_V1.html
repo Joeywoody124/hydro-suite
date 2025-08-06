@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trapezoidal Channel Generator</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .form-section, .batch-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"], input[type="file"] {
+            width: calc(100% - 22px);
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        button {
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            flex: 1;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .download-link {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .download-link:hover {
+            background-color: #218838;
+        }
+        #output {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 15px;
+        }
+        #output h3 {
+            margin-top: 0;
+        }
+        #resultsTable {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        #resultsTable th, #resultsTable td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: center;
+        }
+        #resultsTable th {
+            background-color: #f2f2f2;
+        }
+        #swmmOutput {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: none;
+            font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+            white-space: pre;
+            overflow-wrap: normal;
+            overflow-x: auto;
+        }
+        .copy-instructions {
+            font-size: 0.9em;
+            color: #555;
+            margin-top: 5px;
+        }
+        #batchResultsContainer {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #fff;
+            display: none;
+        }
+        #batchResults {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        #batchResults th, #batchResults td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        #batchResults th {
+            background-color: #f2f2f2;
+        }
+        #csvTemplate {
+            color: #0056b3;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Trapezoidal Channel Generator</h2>
+    
+    <div class="form-section">
+        <h3>Single Channel Generator</h3>
+        <label for="depth">Depth (e.g., 2):</label>
+        <input type="number" id="depth" value="2" step="any">
+
+        <label for="bottomWidth">Bottom Width (e.g., 4):</label>
+        <input type="number" id="bottomWidth" value="4" step="any">
+
+        <label for="leftSlope">Left Side Slope (Horizontal:1 Vertical, e.g., 3 for 3:1):</label>
+        <input type="number" id="leftSlope" value="3" step="any">
+
+        <label for="rightSlope">Right Side Slope (Horizontal:1 Vertical, e.g., 3 for 3:1):</label>
+        <input type="number" id="rightSlope" value="3" step="any">
+
+        <label for="refElevation">Reference Bottom Elevation (e.g., 100):</label>
+        <input type="number" id="refElevation" value="100" step="any">
+
+        <button onclick="generateChannelPoints()">Generate Points</button>
+    </div>
+    
+    <div class="batch-section">
+        <h3>Batch Processing</h3>
+        <p>Upload a CSV file with multiple channel specifications. 
+           Format: <span id="csvTemplate" onclick="showCsvTemplate()">See Template Format</span>
+        </p>
+        <input type="file" id="csvFileInput" accept=".csv">
+        <button onclick="processBatchFile()">Process Batch File</button>
+        
+        <div id="batchResultsContainer">
+            <h3>Batch Results</h3>
+            <table id="batchResults">
+                <thead>
+                    <tr>
+                        <th>Channel ID</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="output" style="display: none;">
+        <h3>Generated Channel Points</h3>
+        <table id="resultsTable">
+            <thead>
+                <tr>
+                    <th>Point</th>
+                    <th>Offset</th>
+                    <th>Elevation</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+
+        <h3>SWMM Input Format (Offset Elevation pairs)</h3>
+        <textarea id="swmmOutput" readonly></textarea>
+        <div class="copy-instructions">Copy the text from the box above and paste into SWMM's Xsections editor.</div>
+        
+        <div class="button-container">
+            <a id="downloadLink" class="download-link" download="channel_points.csv">Download Points (CSV)</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Define global variables to store current points
+    let currentPoints = [];
+    let batchResults = [];
+    
+    function validateInputs(depth, bottomWidth, leftSlope, rightSlope, refElevation) {
+        if (isNaN(depth) || isNaN(bottomWidth) || isNaN(leftSlope) || isNaN(rightSlope) || isNaN(refElevation)) {
+            return "Please enter valid numbers for all fields.";
+        }
+        if (depth <= 0 || bottomWidth <= 0 || leftSlope < 0 || rightSlope < 0) {
+            return "Depth and Bottom Width must be positive. Slopes must be non-negative.";
+        }
+        return null; // No error
+    }
+    
+    function calculateChannelPoints(depth, bottomWidth, leftSlope, rightSlope, refElevation) {
+        const points = [];
+        
+        // Left Side Point (bottom)
+        const leftBottomOffset = -bottomWidth / 2;
+        points.push({ offset: leftBottomOffset, elevation: refElevation });
+        
+        // Right Side Point (bottom)
+        const rightBottomOffset = bottomWidth / 2;
+        points.push({ offset: rightBottomOffset, elevation: refElevation });
+        
+        // Left Side Point (top)
+        const leftTopOffset = -bottomWidth / 2 - leftSlope * depth;
+        const leftTopElevation = refElevation + depth;
+        points.push({ offset: leftTopOffset, elevation: leftTopElevation });
+        
+        // Right Side Point (top)
+        const rightTopOffset = bottomWidth / 2 + rightSlope * depth;
+        const rightTopElevation = refElevation + depth;
+        points.push({ offset: rightTopOffset, elevation: rightTopElevation });
+        
+        // Sort points by offset for SWMM compatibility (left to right)
+        return points.sort((a, b) => a.offset - b.offset);
+    }
+    
+    function displayChannelPoints(points) {
+        currentPoints = points;
+        
+        // Display points in the table
+        const resultsTableBody = document.querySelector('#resultsTable tbody');
+        resultsTableBody.innerHTML = ''; // Clear previous results
+
+        points.forEach((point, index) => {
+            const row = resultsTableBody.insertRow();
+            const cellPoint = row.insertCell(0);
+            const cellOffset = row.insertCell(1);
+            const cellElevation = row.insertCell(2);
+
+            cellPoint.textContent = `Point ${index + 1}`;
+            cellOffset.textContent = point.offset.toFixed(4); // Format to 4 decimal places
+            cellElevation.textContent = point.elevation.toFixed(4); // Format to 4 decimal places
+        });
+
+        // Generate SWMM output format
+        let swmmOutputText = '';
+        points.forEach(point => {
+            swmmOutputText += `${point.offset.toFixed(4)} ${point.elevation.toFixed(4)}\n`;
+        });
+
+        document.getElementById('swmmOutput').value = swmmOutputText.trim(); // Remove trailing newline
+        
+        // Update download link with current data
+        updateDownloadLink(points);
+
+        // Show the output section
+        document.getElementById('output').style.display = 'block';
+    }
+    
+    function updateDownloadLink(points) {
+        // Create CSV content
+        let csvContent = "Point,Offset,Elevation\n";
+        points.forEach((point, index) => {
+            csvContent += `${index + 1},${point.offset.toFixed(4)},${point.elevation.toFixed(4)}\n`;
+        });
+        
+        // Create blob and update download link
+        const blob = new Blob([csvContent], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const downloadLink = document.getElementById('downloadLink');
+        downloadLink.href = url;
+        downloadLink.download = "channel_points.csv";
+    }
+    
+    function generateChannelPoints() {
+        const depth = parseFloat(document.getElementById('depth').value);
+        const bottomWidth = parseFloat(document.getElementById('bottomWidth').value);
+        const leftSlope = parseFloat(document.getElementById('leftSlope').value);
+        const rightSlope = parseFloat(document.getElementById('rightSlope').value);
+        const refElevation = parseFloat(document.getElementById('refElevation').value);
+
+        const validationError = validateInputs(depth, bottomWidth, leftSlope, rightSlope, refElevation);
+        if (validationError) {
+            alert(validationError);
+            return;
+        }
+
+        const points = calculateChannelPoints(depth, bottomWidth, leftSlope, rightSlope, refElevation);
+        displayChannelPoints(points);
+    }
+    
+    function showCsvTemplate() {
+        const templateContent = "id,depth,bottom_width,left_slope,right_slope,ref_elevation\n" +
+                               "Channel1,2,4,3,3,100\n" +
+                               "Channel2,3,5,2,2,95\n" +
+                               "Channel3,2.5,6,4,3,105";
+        
+        const blob = new Blob([templateContent], { type: 'text/csv' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = "channel_template.csv";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+    
+    function processBatchFile() {
+        const fileInput = document.getElementById('csvFileInput');
+        const file = fileInput.files[0];
+        
+        if (!file) {
+            alert("Please select a CSV file first.");
+            return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const csvContent = e.target.result;
+            processBatchContent(csvContent);
+        };
+        reader.readAsText(file);
+    }
+    
+    function processBatchContent(csvContent) {
+        // Parse CSV content
+        const lines = csvContent.split('\n');
+        const headers = lines[0].split(',').map(header => header.trim().toLowerCase());
+        
+        // Check required columns
+        const requiredColumns = ['id', 'depth', 'bottom_width', 'left_slope', 'right_slope', 'ref_elevation'];
+        const missingColumns = requiredColumns.filter(col => !headers.includes(col));
+        
+        if (missingColumns.length > 0) {
+            alert(`CSV is missing required columns: ${missingColumns.join(', ')}`);
+            return;
+        }
+        
+        // Process each channel specification
+        batchResults = [];
+        
+        for (let i = 1; i < lines.length; i++) {
+            if (!lines[i].trim()) continue; // Skip empty lines
+            
+            const values = lines[i].split(',');
+            if (values.length !== headers.length) continue; // Skip malformed lines
+            
+            // Create data object from CSV row
+            const channelData = {};
+            headers.forEach((header, index) => {
+                channelData[header] = values[index].trim();
+            });
+            
+            // Convert to appropriate types
+            const channelId = channelData.id;
+            const depth = parseFloat(channelData.depth);
+            const bottomWidth = parseFloat(channelData.bottom_width);
+            const leftSlope = parseFloat(channelData.left_slope);
+            const rightSlope = parseFloat(channelData.right_slope);
+            const refElevation = parseFloat(channelData.ref_elevation);
+            
+            // Validate and calculate points
+            const validationError = validateInputs(depth, bottomWidth, leftSlope, rightSlope, refElevation);
+            
+            if (validationError) {
+                batchResults.push({
+                    id: channelId,
+                    status: 'Error: ' + validationError,
+                    points: null
+                });
+            } else {
+                const points = calculateChannelPoints(depth, bottomWidth, leftSlope, rightSlope, refElevation);
+                batchResults.push({
+                    id: channelId,
+                    status: 'Success',
+                    points: points
+                });
+            }
+        }
+        
+        displayBatchResults();
+    }
+    
+    function displayBatchResults() {
+        const batchResultsContainer = document.getElementById('batchResultsContainer');
+        const batchResultsBody = document.querySelector('#batchResults tbody');
+        
+        batchResultsBody.innerHTML = ''; // Clear previous results
+        
+        batchResults.forEach((result, index) => {
+            const row = batchResultsBody.insertRow();
+            
+            const cellId = row.insertCell(0);
+            const cellStatus = row.insertCell(1);
+            const cellAction = row.insertCell(2);
+            
+            cellId.textContent = result.id;
+            cellStatus.textContent = result.status;
+            
+            if (result.status === 'Success') {
+                const viewButton = document.createElement('button');
+                viewButton.textContent = 'View';
+                viewButton.className = 'view-button';
+                viewButton.onclick = function() {
+                    displayChannelPoints(result.points);
+                    // Update download filename with channel ID
+                    document.getElementById('downloadLink').download = `${result.id}_points.csv`;
+                };
+                
+                cellAction.appendChild(viewButton);
+            } else {
+                cellAction.textContent = 'N/A';
+            }
+        });
+        
+        batchResultsContainer.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

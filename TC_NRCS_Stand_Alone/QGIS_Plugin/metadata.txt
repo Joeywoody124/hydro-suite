@@ -1,0 +1,19 @@
+[general]
+name=TC Calculator
+qgisMinimumVersion=3.40
+description=Time of Concentration Calculator using SCS/NRCS TR-55 methodology for stormwater analysis
+version=6.0.0
+author=Hydro Suite Development Team
+email=support@hydrosuite.com
+about=A scientifically accurate Time of Concentration calculator for QGIS using the SCS/NRCS TR-55 methodology. This tool performs proper hydrologic analysis with DEM-based calculations for stormwater and watershed analysis. Features include multi-basin batch processing, DEM-based slope calculation, flow accumulation analysis, hydraulic length estimation, CSV export functionality, and progress tracking with GUI.
+tracker=https://github.com/hydrosuite/tc-calculator/issues
+repository=https://github.com/hydrosuite/tc-calculator
+hasProcessingProvider=no
+changelog=Version 6.0.0: Production release with validated tool chain, multi-basin batch processing, CSV export functionality, automatic field detection (NAME, CN_Comp, AREA), comprehensive error handling and validation, SCS/NRCS TR-55 methodology implementation.
+tags=hydrology,stormwater,time of concentration,SCS,NRCS,TR-55,watershed,drainage,hydraulic
+homepage=https://github.com/hydrosuite/tc-calculator
+category=Vector
+icon=icon.png
+experimental=False
+deprecated=False
+server=False

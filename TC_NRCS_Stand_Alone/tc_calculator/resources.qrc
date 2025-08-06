@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/plugins/tc_calculator" >
+        <file>icon.png</file>
+    </qresource>
+</RCC>

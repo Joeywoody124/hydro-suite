@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git config:*)",
+      "Bash(git commit:*)",
+      "Bash(python test_channel_designer.py)",
+      "Bash(del test_layer_loading.py simple_test.py test_channel_designer.py debug_launch.py launch_hydro_suite.py)",
+      "Bash(rm:*)",
+      "Bash(git checkout:*)",
+      "Bash(mkdir:*)",
+      "Bash(cp:*)",
+      "Bash(git push:*)",
+      "Bash(git merge:*)",
+      "Bash(python test:*)",
+      "Bash(python:*)",
+      "Bash(dir:*)",
+      "Bash(move tc_calculator_fixed.py ArchivePrevious_Versions )",
+      "Bash(move tc_calculator_hydrologic.py ArchivePrevious_Versions )",
+      "Bash(move tc_calculator_simplified.py ArchivePrevious_Versions )",
+      "Bash(move tc_nrcs_standalone.py ArchivePrevious_Versions )",
+      "Bash(move tc_step_by_step_tester.py ArchivePrevious_Versions )",
+      "Bash(move validate_syntax.py ArchivePrevious_Versions)",
+      "Bash(mv:*)",
+      "Bash(del COMPLETION_SUMMARY.md HANDOFF.md)",
+      "Bash(mv:*)"
+    ],
+    "deny": []
+  }
+}

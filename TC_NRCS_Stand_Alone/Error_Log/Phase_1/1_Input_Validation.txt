@@ -1,0 +1,17 @@
+============================================================
+TESTING: 1. Input Validation
+============================================================
+
+🔄 Testing input validation...
+✅ SUCCESS: validate
+
+📊 RESULTS:
+  basin_count: 1
+  basin_crs: EPSG:3361
+  dem_crs: EPSG:3361
+  basin_area_acres: 9.237226431344089
+  basin_area_sq_m: 37381.76215594914
+  bbox_width_m: 251.68499999982305
+  bbox_height_m: 250.70699999999488
+  crs_match: True
+  target_crs_match: True

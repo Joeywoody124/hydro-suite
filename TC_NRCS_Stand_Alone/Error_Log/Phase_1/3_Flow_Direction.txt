@@ -1,0 +1,17 @@
+============================================================
+TESTING: 3. Flow Direction
+============================================================
+
+🔄 Testing flow direction calculation...
+🔄 Trying GRASS r.watershed...
+✅ SUCCESS: flow_direction
+
+📊 RESULTS:
+  method: GRASS r.watershed
+  success: True
+  flow_direction: C:\Users\Joey Woody\AppData\Local\Temp\processing_axgnFJ\b2ea4ae676eb4db99d9d519b269812ec\drainage.tif
+  flow_accumulation: C:\Users\Joey Woody\AppData\Local\Temp\processing_axgnFJ\374247b9a1b74a51a036537bf03293e8\accumulation.tif
+  accumulation_stats:
+    min: -244045.64146141708
+    max: 15206.503633654938
+    mean: -2935.489438759258

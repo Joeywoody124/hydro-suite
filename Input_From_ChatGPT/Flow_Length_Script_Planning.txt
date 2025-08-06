@@ -1,0 +1,69 @@
+# -*- coding: utf-8 -*-
+"""
+Hydraulic Length Calculator for QGIS
+Author: J. Bragg Consulting, Inc.
+Date: 2025-08-05
+
+Description:
+Calculates the hydraulic (longest flow) length from a watershed polygon using a filled DEM.
+Uses WhiteboxTools via QGIS processing toolbox.
+"""
+
+from qgis.core import (
+    QgsProject,
+    QgsProcessingFeedback
+)
+import processing
+
+# Parameters - update as needed
+dem_layer = 'filled_dem'  # Name of filled DEM raster layer
+watershed_layer = 'watershed_boundary'  # Name of watershed polygon layer
+output_vector = 'longest_flow_path.gpkg'  # Output vector file
+
+# Create feedback channel
+feedback = QgsProcessingFeedback()
+
+# Step 1: Clip DEM to watershed
+clipped_dem = 'memory:clipped_dem'
+processing.run("gdal:cliprasterbymasklayer", {
+    'INPUT': dem_layer,
+    'MASK': watershed_layer,
+    'SOURCE_CRS': None,
+    'TARGET_CRS': None,
+    'NODATA': -9999,
+    'ALPHA_BAND': False,
+    'CROP_TO_CUTLINE': True,
+    'KEEP_RESOLUTION': True,
+    'SET_RESOLUTION': False,
+    'MULTITHREADING': False,
+    'OPTIONS': '',
+    'DATA_TYPE': 0,
+    'EXTRA': '',
+    'OUTPUT': clipped_dem
+}, feedback=feedback)
+
+# Step 2: Use WhiteboxTools to calculate flow direction
+flow_dir = 'memory:flow_dir'
+processing.run("whitebox:breachdepressions", {
+    'dem': clipped_dem,
+    'output': flow_dir
+}, feedback=feedback)
+
+# Step 3: Compute downslope flow length
+flow_length = 'memory:flow_length'
+processing.run("whitebox:downslopeflowpathlength", {
+    'dem': clipped_dem,
+    'output': flow_length
+}, feedback=feedback)
+
+# Step 4: Extract longest path
+longest_path = 'memory:vector_path'
+processing.run("whitebox:longestflowpath", {
+    'dem': clipped_dem,
+    'output': output_vector
+}, feedback=feedback)
+
+# Load output to project
+QgsProject.instance().addMapLayer(QgsProject.instance().mapLayer(output_vector))
+
+print("Hydraulic length calculation complete. Output saved to:", output_vector)

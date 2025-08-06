@@ -1,0 +1,44 @@
+landuse,A,B,C,D
+Commercial & Business,89,92,94,95
+Industrial,81,88,91,93
+Paved; Curbs and Storm Sewers (Excluding ROW),98,98,98,98
+"Paved; Parking Lots, Roofs, Driveways, etc.",98,98,98,98
+Paved; Open Ditches (Including ROW),83,89,92,93
+Gravel; (Including ROW),76,85,89,91
+Dirt; (Including ROW),72,82,87,89
+Residential; 1/8 acre or less,77,85,90,92
+Residential; 1/4 acre,61,75,83,87
+Residential; 1/3 acre,57,72,81,86
+Residential; 1/2 acre,54,70,80,85
+Residential; 1 acre,51,68,79,84
+Residential; 2 acre,46,65,77,82
+Open Space; Good,39,61,74,80
+Open Space; Fair,49,69,79,84
+Open Space; Poor,68,79,86,89
+"Newly graded areas (pervious only, no vegetation)",77,86,91,94
+"Farmsteads; Buildings, Lanes, Driveways, Surrounding Lots",59,74,82,86
+Fallow; Bare soil,77,86,91,94
+"Fallow; Crop residue cover, Good",74,83,88,90
+"Fallow; Crop residue cover, Poor",76,85,90,93
+"Row Crops; Straight row, Good",67,78,85,89
+"Row Crops; Straight row, Poor",72,81,88,91
+Pasture; Good,39,61,74,80
+Pasture; Fair,49,69,79,84
+Pasture; Poor,68,79,86,89
+Meadow,30,58,71,78
+Brush; Good,30,48,65,73
+Brush; Poor,48,67,77,83
+Woods-Grass Combo; Good,32,58,72,79
+Woods-Grass Combo; Fair,43,65,76,82
+Woods-Grass Combo; Poor,57,73,82,86
+Woods; Good,30,55,70,77
+Woods; Fair,36,60,73,79
+Woods; Poor,45,66,77,83
+"Water; Lake, Pond, Reservior, etc.",98,98,98,98
+"Water; Marsh, Swamp, etc.",98,98,98,98
+VEG,39,61,74,80
+R1,51,68,79,84
+R4,61,75,83,87
+IMP,98,98,98,98
+MF,77,85,90,92
+Grass,39,61,74,80

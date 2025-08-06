@@ -1,0 +1,67 @@
+[general]
+name=Time of Concentration Calculator - Multiple Methods
+qgisMinimumVersion=3.4
+qgisMaximumVersion=3.99
+description=Professional multi-method Time of Concentration calculator for watershed subbasins (Kirpich, FAA, SCS/NRCS, Kerby)
+version=3.0.0
+author=Joey Woody
+email=jwoody@jbraggconsulting.com
+
+about=This professional-grade plugin calculates Time of Concentration (TC) for watershed subbasins using multiple established hydraulic engineering methods:
+    
+    🏛️ KIRPICH METHOD (1940) - Rural watersheds with well-defined channels
+    ✈️ FAA METHOD (1965) - Federal Aviation Administration, widely used for urban areas  
+    🌾 SCS/NRCS LAG TIME METHOD (1972) - Natural Resources Conservation Service standard
+    🌿 KERBY EQUATION - Overland flow on natural surfaces with retardance
+    
+    KEY FEATURES:
+    • Multiple TC calculation methods for comparison and validation
+    • Comparative analysis with statistical measures (average, std dev, recommended)
+    • Professional parameter configuration (curve numbers, runoff coefficients, roughness)
+    • Automatic flow path calculation for each subbasin polygon
+    • Elevation extraction from DEM at upstream/downstream points
+    • Comprehensive CSV results with all methods and parameters
+    • Method selection guidance for different project types
+    • Advanced validation and error handling
+    • Full QGIS 3.40 compatibility with PyQt5/PyQt6 support
+    • Shapefile compatibility with optimized field names
+    • MultiPolygon support for complex subbasin geometries
+    
+    PROFESSIONAL APPLICATIONS:
+    • Regulatory compliance (FAA, SCS/NRCS methods)
+    • Engineering validation through multiple method comparison
+    • Urban stormwater design (FAA method)
+    • Agricultural and natural watershed analysis (SCS method)
+    • Research and sensitivity analysis
+    
+    The plugin processes each subbasin polygon to determine the longest flow path, extracts elevations from the DEM, calculates slope, and applies selected TC methods to provide comprehensive comparative analysis suitable for professional engineering reports.
+
+tracker=https://github.com/jbraggconsulting/qgis-tc-calculator-multi/issues
+repository=https://github.com/jbraggconsulting/qgis-tc-calculator-multi
+homepage=https://github.com/jbraggconsulting/qgis-tc-calculator-multi
+
+category=Analysis
+tags=hydrology,watershed,time of concentration,kirpich,faa,scs,nrcs,kerby,drainage,runoff,hydraulics,engineering,comparative,multi-method
+
+icon=icon.png
+
+experimental=False
+deprecated=False
+
+changelog=3.0.0 (2025-06-13) - MULTI-METHOD PROFESSIONAL RELEASE
+    - 🚀 NEW MULTI-METHOD ARCHITECTURE: Calculate TC using 4 established methods
+    - 🏛️ Kirpich Method (1940) - Enhanced implementation for rural watersheds
+    - ✈️ FAA Method (1965) - Federal Aviation Administration standard for urban areas
+    - 🌾 SCS/NRCS Lag Time Method (1972) - Natural Resources Conservation Service
+    - 🌿 Kerby Equation - Specialized for overland flow with surface retardance
+    - 📊 COMPARATIVE ANALYSIS: Statistical comparison with average, std dev, recommended TC
+    - ⚙️ PROFESSIONAL PARAMETERS: Curve numbers, runoff coefficients, roughness values
+    - 🎯 INTELLIGENT DEFAULTS: Automatic parameter estimation with manual override
+    - 📋 METHOD SELECTION GUIDANCE: Quick presets for urban/rural projects
+    - 🔍 ENHANCED VALIDATION: Comprehensive input checking and parameter validation
+    - 📈 COMPREHENSIVE RESULTS: Multi-method CSV output with all parameters documented
+    - 🏗️ PROFESSIONAL UI: Tabbed interface with method info and selection guidance
+    - 🔧 QGIS 3.40 OPTIMIZED: Full compatibility with latest QGIS versions
+    - 📦 SHAPEFILE READY: All field names optimized for shapefile compatibility
+    - 🚨 ROBUST ERROR HANDLING: Detailed logging and graceful failure recovery
+    - 🔄 FORCE RELOAD SYSTEM: Development-friendly module reloading maintained

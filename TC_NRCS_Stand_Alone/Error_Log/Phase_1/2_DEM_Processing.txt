@@ -1,0 +1,16 @@
+============================================================
+TESTING: 2. DEM Preprocessing
+============================================================
+
+🔄 Testing DEM preprocessing...
+🔄 Trying GDAL fillnodata...
+✅ SUCCESS: preprocess
+
+📊 RESULTS:
+  method: GDAL fillnodata
+  success: True
+  output_layer: C:/Users/Joey Woody/AppData/Local/Temp/processing_axgnFJ/69b42c2d031d421684ef0055b12f2fee/OUTPUT.tif
+  dem_stats:
+    min: 18.501209259033203
+    max: 27.01177215576172
+    mean: 23.44551135567036

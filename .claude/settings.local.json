@@ -24,7 +24,8 @@
       "Bash(move validate_syntax.py ArchivePrevious_Versions)",
       "Bash(mv:*)",
       "Bash(del COMPLETION_SUMMARY.md HANDOFF.md)",
-      "Bash(mv:*)"
+      "Bash(mv:*)",
+      "Bash(git rm:*)"
     ],
     "deny": []
   }
